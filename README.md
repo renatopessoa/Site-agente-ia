@@ -10,12 +10,14 @@ Landing page para o AgendaIA - Sistema de agendamento inteligente com IA.
 ## 🚀 Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/renatopessoa/Site-agente-ia.git
 cd Site-agente-ia
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 # ou
@@ -23,6 +25,7 @@ yarn install
 ```
 
 3. Execute o projeto em modo de desenvolvimento:
+
 ```bash
 npm run dev
 # ou
@@ -72,16 +75,19 @@ yarn dev
 O projeto usa Prisma como ORM. Para configurar o banco de dados:
 
 1. Configure sua string de conexão no arquivo `.env`:
+
 ```env
 DATABASE_URL="sua_string_de_conexao"
 ```
 
 2. Execute as migrações:
+
 ```bash
 npx prisma migrate dev
 ```
 
 3. Gere o cliente Prisma:
+
 ```bash
 npx prisma generate
 ```
@@ -89,6 +95,7 @@ npx prisma generate
 ## 🚨 Importantes
 
 ⚠️ **NUNCA COMMITE:**
+
 - `node_modules/` - Pasta das dependências
 - `.next/` - Pasta de build do Next.js
 - `.env*` - Arquivos de ambiente
