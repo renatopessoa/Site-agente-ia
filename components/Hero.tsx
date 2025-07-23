@@ -341,7 +341,7 @@ const Hero = () => {
                   />
                 </motion.div>
                 <div className="flex flex-col">
-                  <span className="text-cyan-300 font-bold font-mono text-sm tracking-wider">QUANTUM AI NEURAL</span>
+                  <span className="text-cyan-300 font-bold font-mono text-sm tracking-wider">Agent AI</span>
                   <span className="text-purple-300 font-mono text-xs">STATUS: ONLINE</span>
                 </div>
                 <motion.div
@@ -393,7 +393,7 @@ const Hero = () => {
                 style={{ perspective: '1000px' }}
               >
                 <motion.div className="relative inline-block">
-                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent blur-sm scale-110">AGENDAMENTO</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent blur-sm">AGENDAMENTO</span>
                   <span className="relative bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">AGENDAMENTO</span>
                 </motion.div>
                 <br />
@@ -408,11 +408,11 @@ const Hero = () => {
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-black">QUÂNTICO</span>
+                  <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-black">INTELIGÊNTE</span>
                 </motion.div>
                 <br />
                 <motion.div className="relative inline-block">
-                  <span className="absolute inset-0 bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent blur-sm scale-105">VIA WHATSAPP</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent blur-sm">VIA WHATSAPP</span>
                   <span className="relative bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">VIA WHATSAPP</span>
                 </motion.div>
               </motion.h1>
@@ -425,21 +425,21 @@ const Hero = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl" />
                 <p className="relative text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-3xl font-light bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                  Nossa <motion.span 
+                  Nosso <motion.span 
                     className="font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                  >IA Quântica</motion.span> processa linguagem natural com 
+                  >agente IA</motion.span> processa linguagem natural com 
                   <motion.span 
                     className="font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  >precisão neural</motion.span>, analisa disponibilidade em 
+                  > precisão neural</motion.span>, analisa disponibilidade em 
                   <motion.span 
                     className="font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  >tempo real</motion.span> e agenda consultas com tecnologia revolucionária.
+                  > tempo real</motion.span> e agenda consultas com tecnologia revolucionária.
                 </p>
               </motion.div>
             </div>
@@ -785,7 +785,7 @@ const Hero = () => {
                       <Brain className="w-6 h-6 text-white" />
                     </motion.div>
                     <div className="flex-1">
-                      <div className="text-white font-bold text-lg font-mono">AgendaIA Neural</div>
+                      <div className="text-white font-bold text-lg font-mono">Agent AI</div>
                       <div className="text-cyan-200 text-sm flex items-center space-x-2">
                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                         <span>Processando IA...</span>

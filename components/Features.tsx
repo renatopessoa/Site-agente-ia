@@ -23,7 +23,7 @@ const Features = () => {
   const features = [
     {
       icon: Brain,
-      title: "IA Neural Avançada",
+      title: "Inteligência Artificial Avançada",
       description: "Processamento de linguagem natural com redes neurais profundas para compreensão contextual perfeita",
       color: "from-cyan-400 via-blue-500 to-purple-600",
       gradient: "bg-gradient-to-br from-cyan-500/20 to-blue-600/20",
@@ -33,7 +33,7 @@ const Features = () => {
     },
     {
       icon: Rocket,
-      title: "Agendamento Quântico",
+      title: "Agendamento ",
       description: "Algoritmos de otimização quântica que processam milhões de combinações em milissegundos",
       color: "from-purple-400 via-pink-500 to-red-500",
       gradient: "bg-gradient-to-br from-purple-500/20 to-pink-600/20",
@@ -157,16 +157,16 @@ const Features = () => {
             transition={{ duration: 3, repeat: Infinity }}
           >
             <Sparkles className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-300 font-mono text-sm">TECNOLOGIA NEURAL AVANÇADA</span>
+            <span className="text-cyan-300 font-mono text-sm">TECNOLOGIA AVANÇADA</span>
           </motion.div>
           
           <h2 className="text-5xl md:text-7xl font-bold mb-8">
             <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
-              Funcionalidades
+              {/* Funcionalidades */}
             </span>
             <br />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent font-mono">
-              Quânticas
+              Inteligência Artificial Revolucionária
             </span>
           </h2>
           
