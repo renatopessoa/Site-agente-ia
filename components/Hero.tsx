@@ -575,169 +575,6 @@ const Hero = () => {
               </motion.button>
             </motion.div>
 
-            {/* Quantum Data Statistics */}
-            <motion.div 
-              className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-16 border-t border-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20"
-              initial={{ opacity: 0, y: 40, rotateX: -30 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 1.5, delay: 1.5 }}
-              style={{ perspective: '1000px' }}
-            >
-              {stats.map((stat, index) => {
-                const Icon = stat.icon
-                return (
-                  <motion.div 
-                    key={index}
-                    className="relative group cursor-pointer"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotateY: 10,
-                      z: 50
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* Holographic Container */}
-                    <div className="relative bg-gradient-to-br from-black/40 via-gray-900/30 to-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 overflow-hidden">
-                      {/* Animated Background */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5"
-                        animate={{
-                          background: [
-                            'linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05))',
-                            'linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05), rgba(6, 182, 212, 0.05))',
-                            'linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05))'
-                          ]
-                        }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                      />
-                      
-                      {/* Floating Data Particles */}
-                      <div className="absolute inset-0 overflow-hidden">
-                        {[...Array(8)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-60"
-                            style={{
-                              left: `${Math.random() * 100}%`,
-                              top: `${Math.random() * 100}%`
-                            }}
-                            animate={{
-                              y: [-20, -40, -20],
-                              opacity: [0.3, 0.8, 0.3],
-                              scale: [0.5, 1, 0.5]
-                            }}
-                            transition={{
-                              duration: 3 + Math.random() * 2,
-                              repeat: Infinity,
-                              delay: Math.random() * 2
-                            }}
-                          />
-                        ))}
-                      </div>
-                      
-                      {/* Holographic Border Effect */}
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl"
-                        animate={{
-                          boxShadow: [
-                            '0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1)',
-                            '0 0 30px rgba(139, 92, 246, 0.4), inset 0 0 30px rgba(139, 92, 246, 0.1)',
-                            '0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1)'
-                          ]
-                        }}
-                        transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
-                      />
-                      
-                      <div className="relative text-center">
-                        {/* Quantum Icon */}
-                        <motion.div 
-                          className="flex justify-center mb-4"
-                          animate={{
-                            rotate: 360,
-                            scale: [1, 1.2, 1]
-                          }}
-                          transition={{
-                            rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                            scale: { duration: 2, repeat: Infinity, delay: index * 0.3 }
-                          }}
-                        >
-                          <div className="relative">
-                            <Icon className="w-8 h-8 text-cyan-400 relative z-10" />
-                            <motion.div 
-                              className="absolute inset-0 bg-cyan-400 rounded-full blur-md"
-                              animate={{ scale: [0, 2, 0], opacity: [0, 0.5, 0] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.4 }}
-                            />
-                          </div>
-                        </motion.div>
-                        
-                        {/* Quantum Value Display */}
-                        <motion.div 
-                          className="text-3xl lg:text-4xl font-black mb-3 relative"
-                          initial={{ scale: 0, rotateY: -180 }}
-                          animate={{ scale: 1, rotateY: 0 }}
-                          transition={{ duration: 0.8, delay: 1.8 + index * 0.2 }}
-                        >
-                          <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent blur-sm scale-110">
-                            {stat.number}
-                          </span>
-                          <motion.span 
-                            className="relative bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
-                            animate={{
-                              textShadow: [
-                                '0 0 10px rgba(6, 182, 212, 0.5)',
-                                '0 0 20px rgba(139, 92, 246, 0.6)',
-                                '0 0 10px rgba(6, 182, 212, 0.5)'
-                              ]
-                            }}
-                            transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                          >
-                            {stat.number}
-                          </motion.span>
-                        </motion.div>
-                        
-                        {/* Neural Label */}
-                        <motion.div 
-                          className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300 relative font-mono"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 2 + index * 0.2 }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded" />
-                          <span className="relative">{stat.label}</span>
-                        </motion.div>
-                        
-                        {/* Data Stream Indicator */}
-                        <motion.div
-                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-100"
-                          animate={{
-                            scaleX: [0, 1, 0]
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.4
-                          }}
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* 3D Projection Effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                      animate={{
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.5
-                      }}
-                    />
-                  </motion.div>
-                )
-              })}
-            </motion.div>
           </motion.div>
 
           {/* Revolutionary 3D Chat Interface */}
@@ -932,6 +769,172 @@ const Hero = () => {
                 />
               ))}
             </div>
+          </motion.div>
+        </div>
+        
+        {/* Quantum Data Statistics - Full Width */}
+        <div className="w-full px-6 py-20">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 xl:gap-20 max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 40, rotateX: -30 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ duration: 1.5, delay: 1.5 }}
+            style={{ perspective: '1000px' }}
+          >
+            {stats.map((stat, index) => {
+              const Icon = stat.icon
+              return (
+                <motion.div 
+                  key={index}
+                  className="relative group cursor-pointer"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: 5,
+                    z: 50
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Holographic Container */}
+                  <div className="relative bg-gradient-to-br from-black/40 via-gray-900/30 to-black/40 backdrop-blur-xl border border-white/10 rounded-2xl px-6 lg:px-8 py-8 lg:py-10 overflow-hidden min-h-[280px]">
+                    {/* Animated Background */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5"
+                      animate={{
+                        background: [
+                          'linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05))',
+                          'linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05), rgba(6, 182, 212, 0.05))',
+                          'linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05))'
+                        ]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    />
+                    
+                    {/* Floating Data Particles */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      {[...Array(8)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-60"
+                          style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`
+                          }}
+                          animate={{
+                            y: [-20, -40, -20],
+                            opacity: [0.3, 0.8, 0.3],
+                            scale: [0.5, 1, 0.5]
+                          }}
+                          transition={{
+                            duration: 3 + Math.random() * 2,
+                            repeat: Infinity,
+                            delay: Math.random() * 2
+                          }}
+                        />
+                      ))}
+                    </div>
+                    
+                    {/* Holographic Border Effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl"
+                      animate={{
+                        boxShadow: [
+                          '0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1)',
+                          '0 0 30px rgba(139, 92, 246, 0.4), inset 0 0 30px rgba(139, 92, 246, 0.1)',
+                          '0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1)'
+                        ]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                    />
+                    
+                    <div className="relative text-center">
+                      {/* Quantum Icon */}
+                      <motion.div 
+                        className="flex justify-center mb-6"
+                        animate={{
+                          rotate: 360,
+                          scale: [1, 1.2, 1]
+                        }}
+                        transition={{
+                          rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                          scale: { duration: 2, repeat: Infinity, delay: index * 0.3 }
+                        }}
+                      >
+                        <div className="relative">
+                          <Icon className="w-12 h-12 lg:w-16 lg:h-16 text-cyan-400 relative z-10" />
+                          <motion.div 
+                            className="absolute inset-0 bg-cyan-400 rounded-full blur-md"
+                            animate={{ scale: [0, 2, 0], opacity: [0, 0.5, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: index * 0.4 }}
+                          />
+                        </div>
+                      </motion.div>
+                      
+                      {/* Quantum Value Display */}
+                       <motion.div 
+                         className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 relative leading-none"
+                        initial={{ scale: 0, rotateY: -180 }}
+                        animate={{ scale: 1, rotateY: 0 }}
+                        transition={{ duration: 0.8, delay: 1.8 + index * 0.2 }}
+                      >
+                        <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent blur-sm scale-110">
+                          {stat.number}
+                        </span>
+                        <motion.span 
+                          className="relative bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
+                          animate={{
+                            textShadow: [
+                              '0 0 10px rgba(6, 182, 212, 0.5)',
+                              '0 0 20px rgba(139, 92, 246, 0.6)',
+                              '0 0 10px rgba(6, 182, 212, 0.5)'
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                        >
+                          {stat.number}
+                        </motion.span>
+                      </motion.div>
+                      
+                      {/* Neural Label */}
+                       <motion.div 
+                         className="text-sm md:text-base lg:text-lg font-medium text-gray-300 group-hover:text-white transition-colors duration-300 relative font-mono"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 2 + index * 0.2 }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded" />
+                        <span className="relative">{stat.label}</span>
+                      </motion.div>
+                      
+                      {/* Data Stream Indicator */}
+                      <motion.div
+                        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-100"
+                        animate={{
+                          scaleX: [0, 1, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.4
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* 3D Projection Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                    animate={{
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.5
+                    }}
+                  />
+                </motion.div>
+              )
+            })}
           </motion.div>
         </div>
       </div>
