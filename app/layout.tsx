@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 
@@ -16,11 +16,11 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://agenda-ia.vercel.app'),
   title: 'AgendaIA - Agente de IA para Agendamento Hospitalar',
   description: 'Revolucione o agendamento de exames e consultas hospitalares com nosso agente de IA via WhatsApp. Automatize processos, reduza filas e melhore a experiência do paciente.',
   keywords: 'agente IA, agendamento hospitalar, WhatsApp, automação médica, consultas, exames',
   authors: [{ name: 'AgendaIA Team' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
     title: 'AgendaIA - Agente de IA para Agendamento Hospitalar',
@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
