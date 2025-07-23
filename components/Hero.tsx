@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { 
   Bot, 
   MessageCircle, 
@@ -32,6 +32,18 @@ import {
 } from 'lucide-react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 
+// Performance optimization: Throttle function
+const throttle = (func: Function, limit: number) => {
+  let inThrottle: boolean
+  return function(this: any, ...args: any[]) {
+    if (!inThrottle) {
+      func.apply(this, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
+
 const Hero = () => {
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
@@ -47,22 +59,23 @@ const Hero = () => {
   const springX = useSpring(mouseX, { stiffness: 100, damping: 30 })
   const springY = useSpring(mouseY, { stiffness: 100, damping: 30 })
 
-  // Generate quantum particles and neural network
-  useEffect(() => {
+  // Optimized particle generation with useMemo
+  const optimizedParticles = useMemo(() => {
     const particleTypes = ['quantum', 'neural', 'data', 'energy']
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
+    return Array.from({ length: 15 }, (_, i) => ({ // Reduced from 50 to 15
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       delay: Math.random() * 8,
       type: particleTypes[Math.floor(Math.random() * particleTypes.length)]
     }))
-    setParticles(newParticles)
+  }, [])
 
-    // Generate quantum nodes network
-    const nodes = Array.from({ length: 12 }, (_, i) => {
-      const connections = Array.from({ length: Math.floor(Math.random() * 3) + 1 }, () => 
-        Math.floor(Math.random() * 12)
+  // Optimized quantum nodes with useMemo
+  const optimizedQuantumNodes = useMemo(() => {
+    return Array.from({ length: 6 }, (_, i) => { // Reduced from 12 to 6
+      const connections = Array.from({ length: Math.floor(Math.random() * 2) + 1 }, () => 
+        Math.floor(Math.random() * 6)
       ).filter(conn => conn !== i)
       
       return {
@@ -72,32 +85,50 @@ const Hero = () => {
         connections
       }
     })
-    setQuantumNodes(nodes)
   }, [])
 
-  // Neural pulse animation
+  // Set optimized data
   useEffect(() => {
-    const interval = setInterval(() => {
-      setNeuralPulse(prev => (prev + 1) % 100)
-    }, 100)
-    return () => clearInterval(interval)
+    setParticles(optimizedParticles)
+    setQuantumNodes(optimizedQuantumNodes)
+  }, [optimizedParticles, optimizedQuantumNodes])
+
+  // Optimized neural pulse with RAF
+  useEffect(() => {
+    let animationId: number
+    let lastTime = 0
+    const interval = 200 // Reduced frequency from 100ms to 200ms
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= interval) {
+        setNeuralPulse(prev => (prev + 1) % 100)
+        lastTime = currentTime
+      }
+      animationId = requestAnimationFrame(animate)
+    }
+    
+    animationId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationId)
   }, [])
 
-  // Mouse tracking for interactive effects
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+  // Optimized mouse tracking with throttling
+  const handleMouseMove = useCallback(
+    throttle((e: MouseEvent) => {
       const rect = heroRef.current?.getBoundingClientRect()
       if (rect) {
         mouseX.set((e.clientX - rect.left) / rect.width * 100)
         mouseY.set((e.clientY - rect.top) / rect.height * 100)
       }
-    }
+    }, 50), // Throttle to 50ms (20fps)
+    [mouseX, mouseY]
+  )
 
+  useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouseX, mouseY])
+  }, [handleMouseMove])
 
-  const messages = [
+  const messages = useMemo(() => [
     {
       type: 'user',
       text: 'Olá! Preciso agendar uma ressonância magnética urgente',
@@ -134,7 +165,7 @@ const Hero = () => {
       time: '14:34',
       avatar: '🧠'
     }
-  ]
+  ], [])
 
   // Auto-advance messages
   useEffect(() => {
@@ -149,19 +180,19 @@ const Hero = () => {
     return () => clearInterval(interval)
   }, [])
 
-  const benefits = [
+  const benefits = useMemo(() => [
     { icon: Brain, text: 'IA Avançada com Machine Learning', color: 'from-cyan-400 to-blue-500' },
     { icon: Zap, text: 'Agendamento em Tempo Real 24/7', color: 'from-purple-400 to-pink-500' },
     { icon: Shield, text: 'Segurança LGPD e Criptografia', color: 'from-green-400 to-emerald-500' },
     { icon: Network, text: 'Integração Multi-hospitalar', color: 'from-orange-400 to-red-500' }
-  ]
+  ], [])
 
-  const stats = [
+  const stats = useMemo(() => [
     { number: '150K+', label: 'Agendamentos IA', icon: Activity },
     { number: '500+', label: 'Hospitais Conectados', icon: Database },
     { number: '99.8%', label: 'Precisão da IA', icon: Cpu },
     { number: '<2s', label: 'Tempo Resposta', icon: Zap }
-  ]
+  ], [])
 
   return (
     <section 
@@ -176,132 +207,85 @@ const Hero = () => {
         `
       }}
     >
-      {/* Quantum Particle System */}
-      <div className="absolute inset-0">
-        {particles.map((particle) => {
+      {/* Simplified Particle System */}
+      <div className="absolute inset-0 opacity-60">
+        {particles.slice(0, 8).map((particle) => { // Show only 8 particles
           const colors = {
-            quantum: 'bg-gradient-to-r from-cyan-400 to-blue-500',
-            neural: 'bg-gradient-to-r from-purple-400 to-pink-500',
-            data: 'bg-gradient-to-r from-green-400 to-emerald-500',
-            energy: 'bg-gradient-to-r from-orange-400 to-red-500'
+            quantum: 'bg-cyan-400',
+            neural: 'bg-purple-400',
+            data: 'bg-green-400',
+            energy: 'bg-orange-400'
           }
           
           return (
             <motion.div
               key={particle.id}
-              className={`absolute w-2 h-2 rounded-full ${colors[particle.type as keyof typeof colors]} shadow-lg`}
+              className={`absolute w-1 h-1 rounded-full ${colors[particle.type as keyof typeof colors]}`}
               style={{
                 left: `${particle.x}%`,
-                top: `${particle.y}%`,
-                filter: 'blur(0.5px)',
-                boxShadow: `0 0 20px ${particle.type === 'quantum' ? '#06b6d4' : particle.type === 'neural' ? '#a855f7' : particle.type === 'data' ? '#10b981' : '#f97316'}`
+                top: `${particle.y}%`
               }}
               animate={{
-                y: [0, -200, 0],
-                x: [0, Math.sin(particle.id) * 50, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1.5, 0],
-                rotate: [0, 360]
+                y: [0, -100, 0],
+                opacity: [0, 0.8, 0]
               }}
               transition={{
-                duration: particle.delay + 5,
+                duration: 8,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "linear",
+                delay: particle.delay
               }}
             />
           )
         })}
       </div>
 
-      {/* Quantum Neural Network */}
-      <div className="absolute inset-0 opacity-40">
+      {/* Simplified Neural Network */}
+      <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" viewBox="0 0 1000 1000">
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge> 
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <linearGradient id="quantum-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#06b6d4" />
-              <stop offset="50%" stopColor="#8b5cf6" />
-              <stop offset="100%" stopColor="#ec4899" />
-            </linearGradient>
-          </defs>
-          
-          {/* Neural Connections */}
-          {quantumNodes.map((node) => 
-            node.connections.map((connId, index) => {
+          {/* Simple Connections */}
+          {quantumNodes.slice(0, 4).map((node) => 
+            node.connections.slice(0, 1).map((connId, index) => {
               const targetNode = quantumNodes[connId]
               if (!targetNode) return null
               
               return (
-                <motion.line
-                  key={`${node.id}-${connId}-${index}`}
+                <line
+                  key={`${node.id}-${connId}`}
                   x1={node.x * 10}
                   y1={node.y * 10}
                   x2={targetNode.x * 10}
                   y2={targetNode.y * 10}
-                  stroke="url(#quantum-gradient)"
-                  strokeWidth="2"
-                  filter="url(#glow)"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ 
-                    pathLength: [0, 1, 0],
-                    opacity: [0, 0.8, 0]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: node.id * 0.2 + index * 0.1
-                  }}
+                  stroke="#06b6d4"
+                  strokeWidth="1"
+                  opacity="0.5"
                 />
               )
             })
           )}
           
-          {/* Quantum Nodes */}
-          {quantumNodes.map((node) => (
-            <motion.circle
+          {/* Simple Nodes */}
+          {quantumNodes.slice(0, 4).map((node) => (
+            <circle
               key={node.id}
               cx={node.x * 10}
               cy={node.y * 10}
-              r="8"
-              fill="url(#quantum-gradient)"
-              filter="url(#glow)"
-              animate={{
-                r: [6, 12, 6],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: node.id * 0.1
-              }}
+              r="4"
+              fill="#06b6d4"
+              opacity="0.6"
             />
           ))}
         </svg>
       </div>
 
-      {/* Interactive Holographic Overlay */}
-      <motion.div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${springX.get()}% ${springY.get()}%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
-        }}
-      />
-
-      {/* Holographic Grid */}
-      <div className="absolute inset-0 opacity-30">
+      {/* Simple Grid */}
+      <div className="absolute inset-0 opacity-10">
         <div className="w-full h-full" style={{
           backgroundImage: `
             linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px',
-          animation: 'holographic-grid 20s linear infinite'
+          backgroundSize: '100px 100px'
         }} />
       </div>
 
