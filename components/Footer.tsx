@@ -75,17 +75,30 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white relative">
+    <footer className="relative text-white overflow-hidden">
+      {/* Dark Futuristic Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-black" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      </div>
+      {/* Neural Network Effect */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+        <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-1/3 left-1/2 w-1.5 h-1.5 bg-cyan-300 rounded-full animate-pulse" style={{animationDelay: '2s'}} />
+      </div>
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+        className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 z-10"
         aria-label="Voltar ao topo"
       >
         <ArrowUp className="w-6 h-6" />
       </button>
 
-      <div className="container-custom">
+      <div className="container-custom relative z-10">
         {/* Main Footer Content */}
         <div className="pt-16 pb-12">
           <div className="grid lg:grid-cols-6 gap-8">
@@ -93,11 +106,11 @@ const Footer = () => {
             <div className="lg:col-span-2">
               {/* Logo */}
               <div className="flex items-center space-x-2 mb-6">
-                <div className="flex items-center justify-center w-10 h-10 bg-primary-600 rounded-lg">
+                <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg">
                   <Bot className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-2xl font-bold font-heading">
-                  Agenda<span className="text-primary-400">IA</span>
+                  Agenda<span className="text-cyan-400">IA</span>
                 </span>
               </div>
 
@@ -115,7 +128,7 @@ const Footer = () => {
                     <a
                       key={index}
                       href={contact.href}
-                      className="flex items-center space-x-3 text-gray-300 hover:text-primary-400 transition-colors duration-200"
+                      className="flex items-center space-x-3 text-gray-300 hover:text-cyan-400 transition-colors duration-200"
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />
                       <span className="text-sm">{contact.text}</span>
@@ -137,7 +150,7 @@ const Footer = () => {
                     <li key={index}>
                       <a
                         href={link.href}
-                        className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm"
+                        className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 text-sm"
                       >
                         {link.name}
                       </a>
@@ -156,7 +169,7 @@ const Footer = () => {
                     <li key={index}>
                       <a
                         href={link.href}
-                        className="text-gray-300 hover:text-primary-400 transition-colors duration-200 text-sm"
+                        className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 text-sm"
                       >
                         {link.name}
                       </a>
@@ -223,11 +236,11 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Seu melhor email"
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className="flex-1 px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200"
                 />
                 <button
                   type="submit"
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 whitespace-nowrap"
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 whitespace-nowrap"
                 >
                   Inscrever-se
                 </button>
@@ -259,7 +272,7 @@ const Footer = () => {
                   <a
                     key={index}
                     href={social.href}
-                    className="text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon className="w-5 h-5" />

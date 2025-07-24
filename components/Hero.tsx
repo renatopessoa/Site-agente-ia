@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
-import { 
-  Bot, 
-  MessageCircle, 
-  Calendar, 
-  Clock, 
-  CheckCircle, 
+import {
+  Bot,
+  MessageCircle,
+  Calendar,
+  Clock,
+  CheckCircle,
   Sparkles,
   ArrowRight,
   Play,
@@ -35,7 +35,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'fram
 // Performance optimization: Throttle function
 const throttle = (func: Function, limit: number) => {
   let inThrottle: boolean
-  return function(this: any, ...args: any[]) {
+  return function (this: any, ...args: any[]) {
     if (!inThrottle) {
       func.apply(this, args)
       inThrottle = true
@@ -47,8 +47,8 @@ const throttle = (func: Function, limit: number) => {
 const Hero = () => {
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
-  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, delay: number, type: string}>>([])
-  const [quantumNodes, setQuantumNodes] = useState<Array<{id: number, x: number, y: number, connections: number[]}>>([])
+  const [particles, setParticles] = useState<Array<{ id: number, x: number, y: number, delay: number, type: string }>>([])
+  const [quantumNodes, setQuantumNodes] = useState<Array<{ id: number, x: number, y: number, connections: number[] }>>([])
   const [neuralPulse, setNeuralPulse] = useState(0)
   const heroRef = useRef<HTMLDivElement>(null)
   const mouseX = useMotionValue(0)
@@ -74,10 +74,10 @@ const Hero = () => {
   // Optimized quantum nodes with useMemo
   const optimizedQuantumNodes = useMemo(() => {
     return Array.from({ length: 6 }, (_, i) => { // Reduced from 12 to 6
-      const connections = Array.from({ length: Math.floor(Math.random() * 2) + 1 }, () => 
+      const connections = Array.from({ length: Math.floor(Math.random() * 2) + 1 }, () =>
         Math.floor(Math.random() * 6)
       ).filter(conn => conn !== i)
-      
+
       return {
         id: i,
         x: Math.random() * 100,
@@ -98,7 +98,7 @@ const Hero = () => {
     let animationId: number
     let lastTime = 0
     const interval = 200 // Reduced frequency from 100ms to 200ms
-    
+
     const animate = (currentTime: number) => {
       if (currentTime - lastTime >= interval) {
         setNeuralPulse(prev => (prev + 1) % 100)
@@ -106,7 +106,7 @@ const Hero = () => {
       }
       animationId = requestAnimationFrame(animate)
     }
-    
+
     animationId = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(animationId)
   }, [])
@@ -142,7 +142,7 @@ const Hero = () => {
       avatar: '🧠'
     },
     {
-      type: 'user', 
+      type: 'user',
       text: 'Qual a mais próxima?',
       time: '14:33',
       avatar: '👤'
@@ -195,7 +195,7 @@ const Hero = () => {
   ], [])
 
   return (
-    <section 
+    <section
       ref={heroRef}
       className="relative min-h-screen overflow-hidden bg-black"
       style={{
@@ -216,7 +216,7 @@ const Hero = () => {
             data: 'bg-green-400',
             energy: 'bg-orange-400'
           }
-          
+
           return (
             <motion.div
               key={particle.id}
@@ -244,11 +244,11 @@ const Hero = () => {
       <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" viewBox="0 0 1000 1000">
           {/* Simple Connections */}
-          {quantumNodes.slice(0, 4).map((node) => 
+          {quantumNodes.slice(0, 4).map((node) =>
             node.connections.slice(0, 1).map((connId, index) => {
               const targetNode = quantumNodes[connId]
               if (!targetNode) return null
-              
+
               return (
                 <line
                   key={`${node.id}-${connId}`}
@@ -263,7 +263,7 @@ const Hero = () => {
               )
             })
           )}
-          
+
           {/* Simple Nodes */}
           {quantumNodes.slice(0, 4).map((node) => (
             <circle
@@ -292,14 +292,14 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center min-h-screen py-20">
           {/* Revolutionary Left Content */}
-          <motion.div 
+          <motion.div
             className="space-y-12 relative"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
             {/* Quantum Status Badge */}
-            <motion.div 
+            <motion.div
               className="inline-flex items-center space-x-4 relative"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -308,17 +308,17 @@ const Hero = () => {
               <div className="relative flex items-center space-x-4 bg-black/40 backdrop-blur-xl border border-cyan-400/30 px-8 py-4 rounded-3xl">
                 <motion.div
                   className="relative"
-                  animate={{ 
+                  animate={{
                     rotate: 360,
                     scale: [1, 1.2, 1]
                   }}
-                  transition={{ 
+                  transition={{
                     rotate: { duration: 3, repeat: Infinity, ease: "linear" },
                     scale: { duration: 2, repeat: Infinity }
                   }}
                 >
                   <Atom className="w-6 h-6 text-cyan-400" />
-                  <motion.div 
+                  <motion.div
                     className="absolute inset-0 bg-cyan-400 rounded-full"
                     animate={{ scale: [0, 2, 0], opacity: [0, 0.5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
@@ -355,7 +355,7 @@ const Hero = () => {
                   <Hexagon className="w-8 h-8 text-cyan-400" />
                 </motion.div>
               </div>
-              
+
               <div className="absolute -top-5 -right-5 opacity-60">
                 <motion.div
                   animate={{
@@ -369,7 +369,7 @@ const Hero = () => {
                 </motion.div>
               </div>
 
-              <motion.h1 
+              <motion.h1
                 className="text-6xl lg:text-8xl font-black leading-none relative"
                 initial={{ opacity: 0, y: 50, rotateX: -90 }}
                 animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -381,7 +381,7 @@ const Hero = () => {
                   <span className="relative bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">AGENDAMENTO</span>
                 </motion.div>
                 <br />
-                <motion.div 
+                <motion.div
                   className="relative inline-block"
                   animate={{
                     textShadow: [
@@ -400,7 +400,7 @@ const Hero = () => {
                   <span className="relative bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">VIA WHATSAPP</span>
                 </motion.div>
               </motion.h1>
-              
+
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, y: 30 }}
@@ -409,17 +409,17 @@ const Hero = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl" />
                 <p className="relative text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-3xl font-light bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                  Nosso <motion.span 
+                  Nosso <motion.span
                     className="font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                  >agente IA</motion.span> processa linguagem natural com 
-                  <motion.span 
+                  >agente IA</motion.span> processa linguagem natural com
+                  <motion.span
                     className="font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  > precisão neural</motion.span>, analisa disponibilidade em 
-                  <motion.span 
+                  > precisão neural</motion.span>, analisa disponibilidade em
+                  <motion.span
                     className="font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: 1 }}
@@ -429,7 +429,7 @@ const Hero = () => {
             </div>
 
             {/* Advanced Benefits */}
-            <motion.div 
+            <motion.div
               className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -438,7 +438,7 @@ const Hero = () => {
               {benefits.map((benefit, index) => {
                 const Icon = benefit.icon
                 return (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="flex items-center space-x-4 glass-morphism p-4 rounded-xl hover:neon-glow transition-all duration-300"
                     whileHover={{ x: 10, scale: 1.02 }}
@@ -456,29 +456,29 @@ const Hero = () => {
             </motion.div>
 
             {/* Revolutionary 3D CTA Buttons */}
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-6 pt-12"
               initial={{ opacity: 0, y: 40, rotateX: -45 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 1.2, delay: 1 }}
               style={{ perspective: '1000px' }}
             >
-             </motion.div>
+            </motion.div>
 
           </motion.div>
 
           {/* Revolutionary 3D Chat Interface */}
-          <motion.div 
-            className="relative"
+          <motion.div
+            className="relative mt-32 lg:mt-80"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             {/* Holographic Phone Frame */}
             <div className="relative max-w-md mx-auto">
-              <motion.div 
+              <motion.div
                 className="relative glass-morphism rounded-[3rem] p-4 neon-glow"
-                animate={{ 
+                animate={{
                   rotateY: [0, 5, 0, -5, 0],
                   rotateX: [0, 2, 0, -2, 0]
                 }}
@@ -488,7 +488,7 @@ const Hero = () => {
                 <div className="bg-slate-800/90 backdrop-blur-xl rounded-[2.5rem] overflow-hidden border border-cyan-400/30">
                   {/* Futuristic Header */}
                   <div className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 px-6 py-4 flex items-center space-x-4">
-                    <motion.div 
+                    <motion.div
                       className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30"
                       animate={{ rotate: 360 }}
                       transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -513,35 +513,32 @@ const Hero = () => {
                   {/* Revolutionary Chat Messages */}
                   <div className="p-6 space-y-4 h-[500px] overflow-y-auto bg-gradient-to-b from-slate-800/50 to-slate-900/50 backdrop-blur-sm">
                     {messages.slice(0, currentMessage + 1).map((message, index) => (
-                      <motion.div 
+                      <motion.div
                         key={index}
                         className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 0.5, delay: index * 0.2 }}
                       >
-                        <div className={`flex items-end space-x-2 max-w-xs ${
-                          message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-                        }`}>
+                        <div className={`flex items-end space-x-2 max-w-xs ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''
+                          }`}>
                           {/* Avatar */}
-                          <motion.div 
-                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${
-                              message.type === 'user' 
-                                ? 'bg-gradient-to-r from-cyan-500 to-blue-500' 
+                          <motion.div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${message.type === 'user'
+                                ? 'bg-gradient-to-r from-cyan-500 to-blue-500'
                                 : 'bg-gradient-to-r from-purple-500 to-pink-500'
-                            }`}
+                              }`}
                             whileHover={{ scale: 1.1 }}
                           >
                             {message.avatar}
                           </motion.div>
-                          
+
                           {/* Message Bubble */}
-                          <motion.div 
-                            className={`px-4 py-3 rounded-2xl backdrop-blur-sm border ${
-                              message.type === 'user'
+                          <motion.div
+                            className={`px-4 py-3 rounded-2xl backdrop-blur-sm border ${message.type === 'user'
                                 ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 text-cyan-100'
                                 : 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-purple-400/30 text-purple-100'
-                            }`}
+                              }`}
                             whileHover={{ scale: 1.02 }}
                           >
                             <div className="text-sm font-medium whitespace-pre-line">
@@ -554,10 +551,10 @@ const Hero = () => {
                         </div>
                       </motion.div>
                     ))}
-                    
+
                     {/* Typing Indicator */}
                     {isTyping && (
-                      <motion.div 
+                      <motion.div
                         className="flex justify-start"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -569,17 +566,17 @@ const Hero = () => {
                           </div>
                           <div className="bg-purple-500/20 backdrop-blur-sm border border-purple-400/30 px-4 py-3 rounded-2xl">
                             <div className="flex space-x-1">
-                              <motion.div 
+                              <motion.div
                                 className="w-2 h-2 bg-purple-400 rounded-full"
                                 animate={{ scale: [1, 1.5, 1] }}
                                 transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
                               />
-                              <motion.div 
+                              <motion.div
                                 className="w-2 h-2 bg-purple-400 rounded-full"
                                 animate={{ scale: [1, 1.5, 1] }}
                                 transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
                               />
-                              <motion.div 
+                              <motion.div
                                 className="w-2 h-2 bg-purple-400 rounded-full"
                                 animate={{ scale: [1, 1.5, 1] }}
                                 transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
@@ -594,9 +591,9 @@ const Hero = () => {
               </motion.div>
 
               {/* Floating Holographic Elements */}
-              <motion.div 
+              <motion.div
                 className="absolute -top-8 -right-8 glass-morphism p-4 rounded-2xl neon-glow"
-                animate={{ 
+                animate={{
                   y: [0, -10, 0],
                   rotate: [0, 5, 0, -5, 0]
                 }}
@@ -604,10 +601,10 @@ const Hero = () => {
               >
                 <MessageCircle className="w-8 h-8 text-cyan-400" />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="absolute -bottom-8 -left-8 glass-morphism p-4 rounded-2xl neon-glow"
-                animate={{ 
+                animate={{
                   y: [0, 10, 0],
                   rotate: [0, -5, 0, 5, 0]
                 }}
@@ -615,10 +612,10 @@ const Hero = () => {
               >
                 <Calendar className="w-8 h-8 text-purple-400" />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="absolute top-1/2 -left-12 glass-morphism p-4 rounded-2xl neon-glow"
-                animate={{ 
+                animate={{
                   x: [0, -5, 0, 5, 0],
                   scale: [1, 1.1, 1]
                 }}
@@ -626,10 +623,10 @@ const Hero = () => {
               >
                 <Clock className="w-8 h-8 text-green-400" />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="absolute top-1/4 -right-12 glass-morphism p-4 rounded-2xl neon-glow"
-                animate={{ 
+                animate={{
                   rotate: 360,
                   scale: [1, 1.2, 1]
                 }}
@@ -661,10 +658,10 @@ const Hero = () => {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Quantum Data Statistics - Full Width */}
         <div className="w-full px-6 py-20">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 xl:gap-20 max-w-7xl mx-auto"
             initial={{ opacity: 0, y: 40, rotateX: -30 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -674,10 +671,10 @@ const Hero = () => {
             {stats.map((stat, index) => {
               const Icon = stat.icon
               return (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="relative group cursor-pointer"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                     rotateY: 5,
                     z: 50
@@ -698,7 +695,7 @@ const Hero = () => {
                       }}
                       transition={{ duration: 4, repeat: Infinity }}
                     />
-                    
+
                     {/* Floating Data Particles */}
                     <div className="absolute inset-0 overflow-hidden">
                       {[...Array(8)].map((_, i) => (
@@ -722,7 +719,7 @@ const Hero = () => {
                         />
                       ))}
                     </div>
-                    
+
                     {/* Holographic Border Effect */}
                     <motion.div
                       className="absolute inset-0 rounded-2xl"
@@ -735,10 +732,10 @@ const Hero = () => {
                       }}
                       transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
                     />
-                    
+
                     <div className="relative text-center">
                       {/* Quantum Icon */}
-                      <motion.div 
+                      <motion.div
                         className="flex justify-center mb-6"
                         animate={{
                           rotate: 360,
@@ -751,17 +748,17 @@ const Hero = () => {
                       >
                         <div className="relative">
                           <Icon className="w-12 h-12 lg:w-16 lg:h-16 text-cyan-400 relative z-10" />
-                          <motion.div 
+                          <motion.div
                             className="absolute inset-0 bg-cyan-400 rounded-full blur-md"
                             animate={{ scale: [0, 2, 0], opacity: [0, 0.5, 0] }}
                             transition={{ duration: 2, repeat: Infinity, delay: index * 0.4 }}
                           />
                         </div>
                       </motion.div>
-                      
+
                       {/* Quantum Value Display */}
-                       <motion.div 
-                         className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 relative leading-none"
+                      <motion.div
+                        className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 relative leading-none"
                         initial={{ scale: 0, rotateY: -180 }}
                         animate={{ scale: 1, rotateY: 0 }}
                         transition={{ duration: 0.8, delay: 1.8 + index * 0.2 }}
@@ -769,7 +766,7 @@ const Hero = () => {
                         <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent blur-sm scale-110">
                           {stat.number}
                         </span>
-                        <motion.span 
+                        <motion.span
                           className="relative bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
                           animate={{
                             textShadow: [
@@ -783,10 +780,10 @@ const Hero = () => {
                           {stat.number}
                         </motion.span>
                       </motion.div>
-                      
+
                       {/* Neural Label */}
-                       <motion.div 
-                         className="text-sm md:text-base lg:text-lg font-medium text-gray-300 group-hover:text-white transition-colors duration-300 relative font-mono"
+                      <motion.div
+                        className="text-sm md:text-base lg:text-lg font-medium text-gray-300 group-hover:text-white transition-colors duration-300 relative font-mono"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 2 + index * 0.2 }}
@@ -794,7 +791,7 @@ const Hero = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded" />
                         <span className="relative">{stat.label}</span>
                       </motion.div>
-                      
+
                       {/* Data Stream Indicator */}
                       <motion.div
                         className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-100"
@@ -809,7 +806,7 @@ const Hero = () => {
                       />
                     </div>
                   </div>
-                  
+
                   {/* 3D Projection Effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"

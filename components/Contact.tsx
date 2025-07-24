@@ -145,18 +145,33 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="section-padding bg-white" ref={sectionRef}>
-      <div className="container-custom">
+    <section id="contact" className="py-32 relative overflow-hidden" ref={sectionRef}>
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-cyan-500/5 to-transparent rounded-full" />
+      </div>
+      
+      {/* Neural Network Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping" />
+        <div className="absolute top-40 right-20 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-cyan-300 rounded-full animate-ping" style={{animationDelay: '2s'}} />
+        <div className="absolute bottom-20 right-1/3 w-1 h-1 bg-blue-300 rounded-full animate-ping" style={{animationDelay: '3s'}} />
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16" data-index="0">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-white mb-6">
               Vamos Conversar sobre
               <span className="text-gradient block">Sua Transformação</span>
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-slate-300 leading-relaxed">
               Entre em contato conosco e descubra como o AgendaIA pode revolucionar 
               o agendamento do seu hospital.
             </p>
@@ -169,12 +184,12 @@ const Contact = () => {
             <div className={`transition-all duration-700 ${
               visibleItems.includes(1) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
-              <div className="card">
+              <div className="glass-morphism rounded-3xl p-8 border border-slate-600/30">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-2xl font-bold text-white mb-4">
                     Solicite uma Demonstração
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-slate-300">
                     Preencha o formulário e nossa equipe entrará em contato em até 2 horas.
                   </p>
                 </div>
@@ -184,10 +199,10 @@ const Contact = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-success-100 text-success-600 rounded-full mb-6">
                       <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h4 className="text-xl font-semibold text-white mb-2">
                       Mensagem Enviada!
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-slate-300">
                       Obrigado pelo interesse. Nossa equipe entrará em contato em breve.
                     </p>
                   </div>
@@ -195,7 +210,7 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
                           Nome Completo *
                         </label>
                         <input
@@ -205,12 +220,12 @@ const Contact = () => {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 text-white placeholder-slate-400"
                           placeholder="Seu nome completo"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
                           Email *
                         </label>
                         <input
@@ -220,7 +235,7 @@ const Contact = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 text-white placeholder-slate-400"
                           placeholder="seu@email.com"
                         />
                       </div>
@@ -228,7 +243,7 @@ const Contact = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-2">
                           Telefone
                         </label>
                         <input
@@ -237,12 +252,12 @@ const Contact = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 text-white placeholder-slate-400"
                           placeholder="(11) 99999-9999"
                         />
                       </div>
                       <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="company" className="block text-sm font-medium text-slate-300 mb-2">
                           Hospital/Clínica
                         </label>
                         <input
@@ -251,14 +266,14 @@ const Contact = () => {
                           name="company"
                           value={formData.company}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 text-white placeholder-slate-400"
                           placeholder="Nome da instituição"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
                         Mensagem
                       </label>
                       <textarea
@@ -267,7 +282,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={4}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 resize-none"
+                        className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600/30 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 resize-none text-white placeholder-slate-400"
                         placeholder="Conte-nos sobre seus desafios de agendamento..."
                       />
                     </div>
@@ -275,7 +290,7 @@ const Contact = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full btn-primary flex items-center justify-center space-x-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -304,7 +319,7 @@ const Contact = () => {
               <div className="space-y-8">
                 {/* Contact Details */}
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-6">
                     Informações de Contato
                   </h3>
                   <div className="grid gap-6">
@@ -313,15 +328,15 @@ const Contact = () => {
                       return (
                         <div 
                           key={index}
-                          className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                          className="flex items-start space-x-4 p-4 glass-morphism rounded-lg border border-slate-600/30 hover:border-slate-500/50 transition-colors duration-200"
                         >
-                          <div className="flex items-center justify-center w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex-shrink-0">
+                          <div className="flex items-center justify-center w-12 h-12 bg-cyan-500/20 text-cyan-400 rounded-lg flex-shrink-0">
                             <Icon className="w-6 h-6" />
                           </div>
                           <div>
-                            <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                            <p className="text-gray-700 font-medium">{info.content}</p>
-                            <p className="text-sm text-gray-600">{info.description}</p>
+                            <h4 className="font-semibold text-white mb-1">{info.title}</h4>
+                            <p className="text-slate-300 font-medium">{info.content}</p>
+                            <p className="text-sm text-slate-400">{info.description}</p>
                           </div>
                         </div>
                       )
@@ -331,7 +346,7 @@ const Contact = () => {
 
                 {/* Benefits */}
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-6">
                     O que você ganha
                   </h3>
                   <div className="space-y-4">
@@ -339,12 +354,12 @@ const Contact = () => {
                       const Icon = benefit.icon
                       return (
                         <div key={index} className="flex items-start space-x-3">
-                          <div className="flex items-center justify-center w-8 h-8 bg-success-100 text-success-600 rounded-lg flex-shrink-0 mt-1">
+                          <div className="flex items-center justify-center w-8 h-8 bg-green-500/20 text-green-400 rounded-lg flex-shrink-0 mt-1">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div>
-                            <h4 className="font-semibold text-gray-900 mb-1">{benefit.title}</h4>
-                            <p className="text-gray-600 text-sm">{benefit.description}</p>
+                            <h4 className="font-semibold text-white mb-1">{benefit.title}</h4>
+                            <p className="text-slate-300 text-sm">{benefit.description}</p>
                           </div>
                         </div>
                       )
@@ -357,15 +372,15 @@ const Contact = () => {
         </div>
 
         {/* Process Steps */}
-        <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 lg:p-12" data-index="3">
+        <div className="glass-morphism rounded-2xl p-8 lg:p-12 border border-slate-600/30" data-index="3">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                 Como Funciona Nosso Processo
               </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Um processo estruturado para garantir o sucesso da sua implementação.
               </p>
             </div>
@@ -380,17 +395,17 @@ const Contact = () => {
                   style={{ transitionDelay: `${index * 200 + 300}ms` }}
                 >
                   <div className="relative mb-6">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 text-white rounded-full text-xl font-bold">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-xl font-bold">
                       {step.number}
                     </div>
                     {index < steps.length - 1 && (
-                      <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-primary-200 transform -translate-y-1/2" />
+                      <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-slate-600/50 transform -translate-y-1/2" />
                     )}
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h4 className="text-lg font-semibold text-white mb-2">
                     {step.title}
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-slate-300 text-sm">
                     {step.description}
                   </p>
                 </div>

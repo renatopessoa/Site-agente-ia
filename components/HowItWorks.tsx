@@ -109,18 +109,39 @@ const HowItWorks = () => {
   ]
 
   return (
-    <section id="how-it-works" className="section-padding gradient-bg" ref={sectionRef}>
-      <div className="container-custom">
+    <section id="how-it-works" className="py-32 relative overflow-hidden" ref={sectionRef}>
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(120,119,198,0.2),transparent_50%)]" />
+        
+        {/* Neural Network Background */}
+        <div className="absolute inset-0 opacity-10">
+          {Array.from({ length: 20 }, (_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `pulse 3s infinite ${i * 0.2}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16" data-index="0">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-white mb-6">
               Como Funciona o
-              <span className="text-gradient block">AgendaIA</span>
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent block">AgendaIA</span>
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-slate-300 leading-relaxed">
               Um processo simples e intuitivo que transforma completamente a experiência 
               de agendamento para pacientes e hospitais.
             </p>
@@ -155,8 +176,8 @@ const HowItWorks = () => {
                     style={{ transitionDelay: `${index * 200}ms` }}
                   >
                     {/* Step Card */}
-                    <div className={`card text-center relative z-10 ${
-                      isActive ? 'border-primary-300 shadow-xl' : 'border-gray-200'
+                    <div className={`glass-morphism rounded-3xl p-8 text-center relative z-10 border transition-all duration-500 ${
+                      isActive ? 'border-cyan-400/30 shadow-cyan-500/25 shadow-2xl' : 'border-slate-600/30'
                     }`}>
                       {/* Step Number */}
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -175,18 +196,18 @@ const HowItWorks = () => {
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      <h3 className="text-xl font-semibold text-white mb-3">
                         {step.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 leading-relaxed">
+                      <p className="text-slate-300 mb-4 leading-relaxed">
                         {step.description}
                       </p>
 
                       {/* Details */}
                       <ul className="space-y-2 text-sm">
                         {step.details.map((detail, detailIndex) => (
-                          <li key={detailIndex} className="flex items-center space-x-2 text-gray-700">
-                            <CheckCircle className="w-4 h-4 text-success-500 flex-shrink-0" />
+                          <li key={detailIndex} className="flex items-center space-x-2 text-slate-300">
+                            <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                             <span>{detail}</span>
                           </li>
                         ))}
@@ -200,15 +221,15 @@ const HowItWorks = () => {
         </div>
 
         {/* Integration Section */}
-        <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg" data-index="2">
+        <div className="glass-morphism rounded-3xl p-8 lg:p-12 border border-slate-600/30" data-index="2">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                 Integrações Poderosas
               </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Nossa solução se integra perfeitamente com os sistemas que você já usa, 
                 garantindo uma transição suave e sem interrupções.
               </p>
@@ -225,13 +246,13 @@ const HowItWorks = () => {
                     }`}
                     style={{ transitionDelay: `${index * 200 + 300}ms` }}
                   >
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl mb-6">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-cyan-500/20 text-cyan-400 rounded-2xl mb-6">
                       <Icon className="w-8 h-8" />
                     </div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                    <h4 className="text-lg font-semibold text-white mb-3">
                       {integration.title}
                     </h4>
-                    <p className="text-gray-600">
+                    <p className="text-slate-300">
                       {integration.description}
                     </p>
                   </div>
@@ -246,10 +267,10 @@ const HowItWorks = () => {
           <div className={`transition-all duration-700 ${
             visibleItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6">
               Veja o AgendaIA em Ação
             </h3>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
               Agende uma demonstração personalizada e descubra como nossa IA pode 
               transformar o agendamento do seu hospital.
             </p>

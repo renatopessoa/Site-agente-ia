@@ -160,28 +160,43 @@ const Pricing = () => {
   ]
 
   return (
-    <section id="pricing" className="section-padding gradient-bg" ref={sectionRef}>
-      <div className="container-custom">
+    <section id="pricing" className="py-32 relative overflow-hidden" ref={sectionRef}>
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-cyan-500/5 to-transparent rounded-full" />
+      </div>
+      
+      {/* Neural Network Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping" />
+        <div className="absolute top-40 right-20 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-cyan-300 rounded-full animate-ping" style={{animationDelay: '2s'}} />
+        <div className="absolute bottom-20 right-1/3 w-1 h-1 bg-blue-300 rounded-full animate-ping" style={{animationDelay: '3s'}} />
+      </div>
+      <div className="container-custom relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16" data-index="0">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(0) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold font-heading text-white mb-6">
               Planos que se Adaptam ao
               <span className="text-gradient block">Seu Negócio</span>
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            <p className="text-xl text-slate-300 leading-relaxed mb-8">
               Escolha o plano ideal para o tamanho do seu hospital. 
               Todos incluem teste gratuito e suporte especializado.
             </p>
             
             {/* Billing Toggle */}
-            <div className="inline-flex items-center bg-white rounded-lg p-1 shadow-lg">
+            <div className="inline-flex items-center glass-morphism rounded-lg p-1 shadow-lg border border-slate-600/30">
               <button
                 onClick={() => setIsAnnual(false)}
                 className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
-                  !isAnnual ? 'bg-primary-600 text-white shadow-md' : 'text-gray-600 hover:text-gray-900'
+                  !isAnnual ? 'bg-primary-600 text-white shadow-md' : 'text-slate-300 hover:text-white'
                 }`}
               >
                 Mensal
@@ -189,7 +204,7 @@ const Pricing = () => {
               <button
                 onClick={() => setIsAnnual(true)}
                 className={`px-6 py-2 rounded-md font-medium transition-all duration-200 relative ${
-                  isAnnual ? 'bg-primary-600 text-white shadow-md' : 'text-gray-600 hover:text-gray-900'
+                  isAnnual ? 'bg-primary-600 text-white shadow-md' : 'text-slate-300 hover:text-white'
                 }`}
               >
                 Anual
@@ -227,10 +242,10 @@ const Pricing = () => {
                   </div>
                 )}
 
-                <div className={`card h-full relative ${
+                <div className={`glass-morphism rounded-3xl p-8 h-full relative border transition-all duration-300 ${
                   plan.highlight 
-                    ? 'border-primary-300 shadow-2xl bg-gradient-to-b from-white to-primary-50' 
-                    : 'border-gray-200 hover:border-primary-200'
+                    ? 'border-cyan-400/30 shadow-2xl shadow-cyan-500/25' 
+                    : 'border-slate-600/30 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-cyan-500/25'
                 }`}>
                   {/* Header */}
                   <div className="text-center mb-8">
@@ -240,25 +255,25 @@ const Pricing = () => {
                       <Icon className="w-8 h-8" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                    <p className="text-gray-600">{plan.description}</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                    <p className="text-slate-300">{plan.description}</p>
                   </div>
 
                   {/* Price */}
                   <div className="text-center mb-8">
                     <div className="flex items-baseline justify-center space-x-2">
-                      <span className="text-4xl lg:text-5xl font-bold text-gray-900">
+                      <span className="text-4xl lg:text-5xl font-bold text-white">
                         R$ {price.toLocaleString('pt-BR')}
                       </span>
-                      <span className="text-gray-600">/mês</span>
+                      <span className="text-slate-300">/mês</span>
                     </div>
                     
                     {isAnnual && (
                       <div className="mt-2">
-                        <span className="text-sm text-gray-500 line-through">
+                        <span className="text-sm text-slate-400 line-through">
                           R$ {plan.monthlyPrice.toLocaleString('pt-BR')}/mês
                         </span>
-                        <span className="ml-2 text-sm text-success-600 font-medium">
+                        <span className="ml-2 text-sm text-green-400 font-medium">
                           Economize {plan.savings}%
                         </span>
                       </div>
@@ -275,7 +290,7 @@ const Pricing = () => {
                           <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                         )}
                         <span className={`text-sm ${
-                          feature.included ? 'text-gray-700' : 'text-gray-400'
+                          feature.included ? 'text-slate-300' : 'text-slate-500'
                         }`}>
                           {feature.name}
                         </span>
@@ -304,15 +319,15 @@ const Pricing = () => {
         </div>
 
         {/* Features Section */}
-        <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg mb-20" data-index="2">
+        <div className="glass-morphism rounded-3xl p-8 lg:p-12 shadow-lg mb-20 border border-slate-600/30" data-index="2">
           <div className={`transition-all duration-700 ${
             visibleItems.includes(2) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                 Recursos Inclusos em Todos os Planos
               </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Funcionalidades essenciais que garantem o sucesso da sua implementação.
               </p>
             </div>
@@ -331,10 +346,10 @@ const Pricing = () => {
                     <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-100 text-primary-600 rounded-xl mb-4">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                    <h4 className="text-lg font-semibold text-white mb-2">
                       {feature.title}
                     </h4>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-slate-300 text-sm">
                       {feature.description}
                     </p>
                   </div>
@@ -350,10 +365,10 @@ const Pricing = () => {
             visibleItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                 Perguntas Frequentes
               </h3>
-              <p className="text-gray-600">
+              <p className="text-slate-300">
                 Tire suas dúvidas sobre nossos planos e funcionalidades.
               </p>
             </div>
@@ -362,15 +377,15 @@ const Pricing = () => {
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className={`bg-white rounded-xl p-6 shadow-lg transition-all duration-500 ${
+                  className={`glass-morphism rounded-xl p-6 shadow-lg border border-slate-600/30 transition-all duration-500 ${
                     visibleItems.includes(3) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 200 + 300}ms` }}
                 >
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                  <h4 className="text-lg font-semibold text-white mb-3">
                     {faq.question}
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-slate-300 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
